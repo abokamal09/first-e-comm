@@ -1,3 +1,5 @@
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 const Menu = () => {
@@ -20,6 +22,9 @@ const Menu = () => {
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.count}</td>
+              <td>
+                <FontAwesomeIcon icon={faCartPlus} />
+              </td>
             </tr>
           ))}
         </tbody>
