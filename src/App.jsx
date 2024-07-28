@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
-import Menu from "./pages/Menu";
+import Cart from "./pages/Cart";
+// import Menu from "./pages/Menu";
 
 function App() {
   // Data Holder
   const [products, setProducts] = useState([
-    { id: 1, name: "Cookies", price: 50, count: 5, order: false },
-    { id: 2, name: "Cola", price: 30, count: 2, order: false },
-    { id: 3, name: "Chips", price: 40, count: 10, order: false },
+    { id: 1, name: "Cookies", price: 50, count: 5, order: true },
+    { id: 2, name: "Cola", price: 30, count: 2, order: true },
+    { id: 3, name: "Chips", price: 40, count: 10, order: true },
     { id: 4, name: "Chocolate", price: 70, count: 8, order: false },
     { id: 5, name: "Juice", price: 20, count: 15, order: false },
     { id: 6, name: "Water", price: 10, count: 20, order: false },
@@ -79,10 +80,31 @@ function App() {
     setProducts(updateState);
   };
 
+  const deFun = (productId) => {
+    const updateProducts = products.map((product) => {
+      if (product.id === productId) {
+        if (product.count > 0) {
+          return { ...product, count: product.count - 1 };
+        } else {
+          return { ...product };
+        }
+      } else {
+        return product;
+      }
+    });
+    setProducts(updateProducts);
+  };
+
   return (
     <div>
       <Navbar />
-      <Menu products={products} incFun={incFun} orderFood={orderFood} />
+      {/* <Menu products={products} incFun={incFun} orderFood={orderFood} /> */}
+      <Cart
+        products={products}
+        incFun={incFun}
+        orderFood={orderFood}
+        deFun={deFun}
+      />
     </div>
   );
 }
