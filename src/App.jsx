@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Cart from "./pages/Cart";
-// import Menu from "./pages/Menu";
+import Menu from "./pages/Menu";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   // Data Holder
@@ -98,13 +99,25 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <Menu products={products} incFun={incFun} orderFood={orderFood} /> */}
-      <Cart
-        products={products}
-        incFun={incFun}
-        orderFood={orderFood}
-        deFun={deFun}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Menu products={products} incFun={incFun} orderFood={orderFood} />
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              products={products}
+              incFun={incFun}
+              orderFood={orderFood}
+              deFun={deFun}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
